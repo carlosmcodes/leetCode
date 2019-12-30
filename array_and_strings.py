@@ -51,15 +51,31 @@ def main():
     # print(isPalindrone("0P"))
     # print(myAtoi("4193 with words"))
     
-    longestCommonPrefix(["flower","flow","flight"])
+    # longestCommonPrefix(["flower","flow","flight"])
+    # print(hammingDistance(1,2))
+def PascalTriangle(numRows: int) -> list[list[int]]:
+    resultset = [[1]* (i+1) for i in range(numRows)]
+    for i in range(numRows):
+        for j in range(1,  i):
+                resultset[i][j] = resultset[i-1][j-1] + resultset[i-1][j]
+    return resultset
+    
+def hammingWeight(n: int) -> int:
+    # gets the number in bit form then counts 1's. very elegant and simple
+    return bin(n).count('1')
+
+
+def hammingDistance(x: int, y: int) -> int:
+# this takes the bit XOR operator and counts the # of 1's // which is also the difference
+    return bin(x^y).count('1')
 
 def longestCommonPrefix(strs: list) -> str:
     if not strs:
         return ""
     shortest = min(strs,key=len)
-    print(len(shortest))
+    print(shortest)
     for i, ch in enumerate(shortest):
-        print(i)
+        print(i, ch)
         for other in strs:
             if other[i] != ch:
                 return shortest[:i]

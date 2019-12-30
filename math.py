@@ -57,7 +57,6 @@ def swamz(sizerepo, repo: list, sugg):
     sugglist = [[] for x in range(1,sizerepo)]
     for isug in range(2, len(sugg)):
         for word in repo:
-            # print(f'word: {word} ::: word[isug]: {word[isug]} ::: sugg[isug]: {sugg[isug]} ::: isug {isug}')
             if len(sugglist[listindex]) < 3 and word[isug] == sugg[isug]:
                 if word[:isug] == sugg[:isug]:
                     sugglist[listindex].append(word)
