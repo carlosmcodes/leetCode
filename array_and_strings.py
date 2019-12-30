@@ -70,6 +70,7 @@ def strStr(haystack: str, needle: str) -> int:
         
 
 def myAtoi(string: str) -> int:
+    l = []
     string = string.strip()
     phen = False
     if len(string) == 0: return 0

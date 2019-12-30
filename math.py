@@ -26,7 +26,7 @@ def main():
     # l.append("mousepad")
     # l.append("mouse")
     # l.append("moose")
-    # amazon(5, l, "mouse")]
+    # swamz(5, l, "mouse")]
     l = [[0,0,1,0,1],
          [1,0,1,0,1],
          [1,0,1,0,1],
@@ -49,7 +49,7 @@ def amz2(l):
 
 
 
-def amazon(sizerepo, repo: list, sugg):
+def swamz(sizerepo, repo: list, sugg):
     repo.sort()
     # print(repo)
     count = 0
