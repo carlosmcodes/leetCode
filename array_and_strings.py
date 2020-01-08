@@ -53,13 +53,108 @@ def main():
     
     # longestCommonPrefix(["flower","flow","flight"])
     # print(hammingDistance(1,2))
-def PascalTriangle(numRows: int) -> list[list[int]]:
+    # print(pascalTriangle(5))
+    # print(validparenthesis("([])"))
+    s = [1,2,3,4,2,6]
+    
+    # print(s[1:])
+    # print(s[:-1])
+    # getmaxscore(s)
+    print(getmaxscore(s))
+    # print(maxproduct(s))
+    
+
+
+def getmaxscore(integerArray: list):
+    score = 0
+    dup = integerArray
+    for i in range(1, len(integerArray)):
+        if dup:
+            if i % 2 == 0:
+                if len(dup) ==1:
+                    score += dup[0]
+                    break
+                score -= sum(dup)
+                if sum(dup[1:]) > sum(dup[:-1]):
+                    dup = dup[:-1]
+                else:
+                    dup = dup[1:]
+            else:
+                if len(dup) ==1:
+                    score += dup[0]
+                    break
+                score += sum(dup)
+                if sum(dup[1:]) > sum(dup[:-1]):
+                    dup = dup[1:]
+                else: dup = dup[:-1]
+    return score
+
+def maxproduct(nums: list):
+    print(len(nums)) 
+    if len(nums) < 3: return 0
+    nums.sort()
+    nums.reverse()
+    val = 0 
+    i = 1
+    j = 0
+    for k in range(2, len(nums)):
+        if nums[i] * nums[j] * nums[k] > val: val = nums[i] * nums[j] * nums[k]
+        i+=1
+        j+=1
+    return val
+
+
+
+
+def mergelistAtIndex(nums1: list, m: int, nums2: list, n: int):
+    # starting at m positions ahead of index 0 = 0..n positions from nums2
+    nums1[m:] = nums2[:n]
+    # nums1[:] = nums1[:m] + nums2[:n]
+    nums1.sort()
+        
+    
+def sorting(n: int):
+        low = 1
+        high = n
+        while(low < high):
+            mid = (low + high)/2
+            if check(mid) == True:
+                high = mid
+            else:
+                low = mid + 1
+        return int(high)
+
+def check(): return
+()
+def missingNumber(nums: list) -> int:
+    n = len(nums)
+    return int(n * (n+1) / 2 - sum(nums))
+
+def validparenthesis(s:str) -> bool:
+    # option1:
+    # while '[]' in s or '()' in s or '{}' in s:
+    #         s = s.replace('[]','').replace('()','').replace('{}','')
+    #     return not len(s)
+    # option2:
+    dict = {')':'(', '}':'{', ']':'['}
+    st = []
+    for e in s:
+    # e in dict checks keys; st[-1] gets last item and matches it with dict[e] which returns val
+        if st and (e in dict and st[-1] == dict[e]):
+            st.pop()
+        else:
+            st.append(e)
+    return not st
+
+def pascalTriangle(numRows: int):
+    # [1] puts it there, (i+1) puts it there X times. +1 because inclusive
     resultset = [[1]* (i+1) for i in range(numRows)]
+    # print(resultset)
     for i in range(numRows):
         for j in range(1,  i):
                 resultset[i][j] = resultset[i-1][j-1] + resultset[i-1][j]
     return resultset
-    
+
 def hammingWeight(n: int) -> int:
     # gets the number in bit form then counts 1's. very elegant and simple
     return bin(n).count('1')
@@ -112,7 +207,7 @@ def isPalindrone(s:str)-> bool:
     s1 = [i for i in s.lower() if i.isalnum()]
     s2 = s1[:]
     s1.reverse()
-    return True if s1 == s2 else False
+    return s1 == s2
     
 
 
