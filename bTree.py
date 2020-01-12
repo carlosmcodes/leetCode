@@ -26,10 +26,3 @@ def isSym(L,R):
     if L and R and L.val == R.val: 
         return isSym(L.left, R.right) and isSym(L.right, R.left)
     return L == R
-
-def isSym2(root: TreeNode, L,R):
-    if not L and not R: return True
-    elif L and R:
-        return L.val == R.val and isSym(L.left, R.right) and isSym(L.right, R.left)
-    return False
-    return not root or isSym(root.left, root.right)
