@@ -76,7 +76,43 @@ vector<int> c2 = {9,4,9,8,4};
 intersectTwo(c, c2);
 }
 
+
 //definition
+
+string hi(string s){
+    string str;
+    if (s.length() == 0)
+        return "Hello there!";
+    else 
+        return "Hello" + s;
+}
+bool containsDuplicate(vector<int>& nums) {
+    map<int, int> nap;
+    for (auto i : nums){
+        if (nap.count(i)){
+            return true;
+        }
+        nap.insert({i,0});
+    }
+    return false;
+
+    //method two
+    vector<int> self;
+    for ( auto i : nums){
+        if (find(self.begin(), self.end(), i) != self.end()){
+            return true;
+        }
+        self.push_back(i);
+    }
+    return false;
+    }
+
+int singleNumber(vector<int>& nums) {
+    int val = 0;
+    for (auto i : nums)
+    val ^=i;
+    return val;
+}
 
 vector<int> intersectTwo(vector<int> &a, vector<int> b){
     sort(a.begin(), a.end());
