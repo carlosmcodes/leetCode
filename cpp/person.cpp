@@ -5,6 +5,7 @@
 #include <map>
 #include <set>
 using namespace std;
+
 class person {
 public:
 int height = 0;

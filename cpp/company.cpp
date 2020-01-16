@@ -22,12 +22,23 @@ class job : public person, public abstract{
 
 int main(){
     person p = person();
-    person p2 = person(32, 32);
+    person p2;
     p.setHeight(99);
+    p2 = p;
     cout << p.getHeight() << endl;
-    job j = job();
-    j.occupation();
-    p.occupation();
-    j.show();
+    cout << p2.getHeight() << endl;
+
+    // job j = job();
+    // j.occupation();
+    // p.occupation();
+    // j.show();
+    
     
 }
+  struct hh
+  {
+      /* dapta */
+      private:
+      int s = 0;
+  };
+  

@@ -28,16 +28,19 @@ employee makeEmployee(int dob, int id, string name);
 void struct_withDS();
 vector<int> twosum(vector<int> nums , int target);
 vector<int> intersectTwo(vector<int> &a, vector<int> b);
-
+bool canWinNim(int n);
+bool deepcheck(int n);
+int countPrimes(int n);
+vector<vector<int>> threeSum(vector<int>& nums);
 
 int main(){
 
 print("run");
-int i = 0;
-vector<int> v;
-v.push_back(12);
-v.push_back(23);
-string x = to_string(v.at(0));
+// int i = 0;
+// vector<int> v;
+// v.push_back(12);
+// v.push_back(23);
+// string x = to_string(v.at(0));
 
 // print("x is:    " +x);
 // printVec(v);
@@ -71,13 +74,63 @@ string x = to_string(v.at(0));
 // hashmap();
 // struct_withDS();
 vector<int> c = {4,9,5};
-vector<int> c2 = {9,4,9,8,4};
+// vector<int> c2 = {9,4,9,8,4};
 // twosum(c, 9);
-intersectTwo(c, c2);
+// intersectTwo(c, c2);
+// cout << canWinNim(5) << endl;
+threeSum(c);
 }
 
 
 //definition
+
+ vector<vector<int>> threeSum(vector<int>& nums) {
+    if (nums.size() <= 3)return;
+    vector<vector<int>> k;
+    int *low;
+    int *mid;
+    int *high;
+    low = &nums[0];
+    mid = &nums[1];
+    high = &nums[2];
+    for (int i = 0; i < nums.size(); i++){
+        
+    }
+    return k;
+
+    }
+int countPrimes(int n) {
+    map<int,int> Map;
+    int counter = 0;
+    for (int i = 1; i < 9; i++){
+        Map.insert({i,0});
+    }
+    return 0;
+}
+
+
+bool deepcheck(int n){
+    if (n == 3) return true;
+    if (n % 2 !=0) return true;
+    return false;
+    }
+    // @param: number to enter in with you can either w/l a game
+    // @return: t/f dependant on the number & algo 
+bool canWinNim(int n) {
+    int a = n-1;
+    int b = n -2;
+    if (n <= 3) return true;
+    if (n % 3 == 0) {
+        return deepcheck(n);
+        }
+    else if(a % 3 == 0) {
+        return deepcheck(a);
+        }
+    else if (b % 3 == 0) {
+        return deepcheck(b);
+        }
+    return false;
+}
 
 string hi(string s){
     string str;
