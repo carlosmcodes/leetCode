@@ -12,6 +12,9 @@ def main():
     a.next.next = ListNode(3)
     a.next.next.next = ListNode(4)
     a.next.next.next.next = ListNode(5)
+    ilist = []
+    for i in range(5):
+        ilist.append(ListNode(i))
     # removeNthFromEnd(a, 2)
     # deleteNode(a.next.next)
     iteratelinkedList(a)
