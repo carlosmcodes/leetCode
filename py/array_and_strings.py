@@ -60,9 +60,19 @@ def main():
     # print(s[1:])
     # print(s[:-1])
     # getmaxscore(s)
-    print(getmaxscore(s))
+    # print(getmaxscore(s))
     # print(maxproduct(s))
-    
+    print(coin_change([1,5,10,25], 98))
+
+def coin_change(coins: list, amount: int) -> int:
+    maxtemp = amount + 1
+    table = [0] + [maxtemp] * amount
+    for subprob in range(1, maxtemp):
+        for coin in coins:
+            if coin <= subprob:
+                table[subprob] = min(table[subprob], table[subprob - coin] + 1)
+    return table[-1] if table[-1] != maxtemp else -1
+
     # recursive fib.
 def fib(self, N):
     cache = {}

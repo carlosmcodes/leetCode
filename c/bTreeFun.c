@@ -2,6 +2,74 @@
 
 int main(){
     puts("main.");
+    btreePlayground();
+   
+}
+
+char *serialize(bTree *root){
+    char s[500];
+    char *str = &s;
+    if (!root)
+        str = "#";
+    else{
+        
+    }
+    
+}
+
+bTree *deserialize(char *s){
+
+}
+
+/*
+ * @param: root of tree
+ * @return: node of min val
+ */
+int minVal(bTree *root){
+    bTree *tempPtr = root;
+    while (tempPtr->left) 
+        tempPtr = tempPtr->left;
+    return tempPtr->val;
+}
+
+/*
+ * @param: root of tree
+ * @return: node of max val
+ */
+int maxVal(bTree *root){
+    bTree *temp = root;
+    while (temp->right)
+        temp = temp->right;
+    return temp->val;
+}
+
+/*
+ * @param: head of tree 
+ * @return: number of nodes in tree ( not including root!!)
+ */
+int nodeCount(bTree *root){
+    if (!root) return 0;
+    return nodeCount(root->right) + nodeCount(root->left) + 1;
+}
+
+/*
+ * @param: root node of tree
+ * @return: size of depth
+ */
+int maxDepth(bTree *root){
+    if (!root) return 0;
+        int maxL = maxDepth(root->left);
+        int maxR = maxDepth(root->right);
+    return max(maxL, maxR)+1;
+        
+}
+
+/*
+ * @param: two int values
+ * @return: max of the two values
+ */
+int max(int a, int b){
+    return (a >= b) ? a : b;
 }
 
 /*
@@ -14,52 +82,28 @@ void btreePlayground(){
     for (i = 0; i< 23; i++) {
         int rando = rand() % 128;
         if (!exists(root,rando)){
-            printf("%d\n", rando);
+            // printf("i: %d | %d\n",i, rando);
             insertNode(root, rando);
         } 
     }
-    puts("preorder:");
-    preOrder(root);
-    nl();
-    puts("inorder:");
-    inOrder(root);
-    nl();
-    puts("postorder:");
-    postOrder(root);
-    nl();
+    // puts("preorder:");
+    // preOrder(root);
+    // nl();
+    // puts("inorder:");
+    // inOrder(root);
+    // nl();
+    // puts("postorder:");
+    // postOrder(root);
+    // nl();
+    // printf("maxdepth: ");
+    // pr(maxDepth(root));
+    // pr(nodeCount(root));
+    // pr(minVal(root));
+    // pr(maxVal(root));    
 }
 
 /*
- * @funx: declutter main
- */
-void stringPlayground(){
-    char *v = "balogne";
-    printItems_inCharList(v);
-    printf("size of v is: %d", listSize(v));
-    nl();
-}
-
-/*
- * @param: char pointer to be checked
- * @return: size of char array using recursion
- */
-int listSize(char *s){
-    if(*s == '\0') return *s;
-    return listSize(++s) + 1; 
-}
-
-/*
- * @param: char pointer to be printed
- */
-void printItems_inCharList(char *s){
-    char *char_ptr;
-    for (char_ptr = s; *char_ptr != '\0'; char_ptr++)
-        printf("%c", *char_ptr);
-    nl();
-}
-
-/*
- * @param: value to be checked in tree
+ * @param: checks if value is in tree
  * @return: t/f 
  */
 bool exists(bTree *root,int value){
@@ -71,22 +115,11 @@ bool exists(bTree *root,int value){
     }
 }
 
-/*
- * @param: value to be printed. has to be int
-*/
-void pr(int v){
-    printf("%d ", v);
-}
-
-/*
- * lazy i am, admit i will 
-*/
-void nl() {puts("");}
 
 /*
  * @param: value to be created
  * @return: a pointer to the new node
-*/
+ */
 bTree *createNode(int val){
     bTree *newBoo = (bTree*)malloc(sizeof(bTree));
     newBoo->val = val;
@@ -97,7 +130,7 @@ bTree *createNode(int val){
 /*
  * n, l, r
  * @param: root of tree
-*/
+ */
 void preOrder(bTree *n){
     if (!n) return;
     else {
@@ -109,7 +142,7 @@ void preOrder(bTree *n){
 /*
  * l, n , r
  * @param: root of tree
-*/
+ */
 void inOrder(bTree *n){
     if (!n) return;
     else
@@ -122,7 +155,7 @@ void inOrder(bTree *n){
 /*
  * l, r, n
  * @param: root of tree
-*/
+ */
 void postOrder(bTree *n){
     if (!n) return;
     else
