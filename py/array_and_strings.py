@@ -62,9 +62,124 @@ def main():
     # getmaxscore(s)
     # print(getmaxscore(s))
     # print(maxproduct(s))
-    print(coin_change([1,5,10,25], 98))
+    # print(coin_change([1,5,10,25], 98))
+    # climbstairs(10)
+    # print(magicindex_ctci([0,1,2,3,4,5,6,7,8],5))
+    # cell(l,7)
+    l = [20,4,8,2, 2, 100, 0, 0]
+    print(minsum(4, l))
+
+    k = [[1,0,12],
+         [1,0,0],
+         [1,9,1]]
+    # print(mindistance(3,3,k))
+    # 23280669604858 amazontestid
+"""
+[0, 1, 0, 1, 1, 0, 0, 1]
+[0, 1, 1, 0, 0, 0, 0, 0] r
+[0, 0, 0, 0, 1, 1, 1, 0]
+[0, 1, 1, 0, 0, 1, 0, 0]
+[0, 0, 0, 0, 0, 1, 0, 0]
+[0, 1, 1, 1, 0, 1, 0, 0]
+[0, 0, 1, 0, 1, 1, 0, 0]
+[0, 0, 1, 1, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 1, 1, 0]
+[0, 1, 1, 1, 0, 0, 0, 0]
+[0, 0, 1, 0, 0, 1, 1, 0]
+[0, 0, 1, 0, 0, 0, 0, 0]
+[0, 0, 1, 0, 1, 1, 1, 0]
+[0, 0, 1, 1, 0, 1, 0, 0]
+[0, 0, 0, 0, 1, 1, 0, 0]
+[0, 1, 1, 0, 0, 0, 0, 0] r
+"""
+
+def mindistance(numRows: int, numColumns, area: list):
+    return checkhit(area, 0,0, numRows, numColumns, 0)
+
+def checkhit(area: list, row: int, col: int, rowsize: int, colsize: int , val):
+    # print(f'row: {row}, col: {col}')
+    if row+1 < rowsize:
+        if area[row+1][col] == 9:
+            return val+1
+    if  col+1< colsize:
+        if area[row][col+1]  == 9:
+            return val+1
+    # if row+1 >= rowsize or col+1>= colsize: return val
+    if area[row][col] == 9:
+        return val
+    if area[row+1][col] == 1: 
+        area[row+1][col] = 0
+        return checkhit(area, row+1, col,rowsize, colsize, val+1)
+    if area[row][col+1] == 1:
+        area[row][col+1] = 0
+        return checkhit(area, row, col+1,rowsize, colsize, val+1)
+
+
+def minsum(numOfSubFiles, fileSizes: list):
+    if not fileSizes: return
+    fileSizes.sort()
+    maxtime = 0
+    for i in range(len(fileSizes)-1):
+        maxtime = maxtime + fileSizes[i+1] + fileSizes[i]
+        print(maxtime)
+        fileSizes[i+1] = fileSizes[i+1] + fileSizes[i]
+        print(fileSizes)
+    return maxtime
+
+
+def cell(cells: list, N: int):
+    """
+    still unsure why 14 is magic number. pulled from LC
+    if N > 14:
+            N = N%14
+    if N%14 == 0:
+        N = 14
+    """
+    for i in range( N):
+        temp = [0]*len(cells)
+        for i in range(1, len(cells)-1):
+            temp[i] = 1 if cells[i-1] == cells[i+1] else 0
+        cells = temp
+        print(cells)
+    return cells
+    
+
+def magicindex_ctci(a:list, n:int) -> int:
+    if not a or n > a[-1] or n <a[0] : return 0
+    return sorthelper(a, n)
+
+def find_subset(a: list): 
+    dp = [[i] for i in a]
+    for subset in range(len(a), "inf"):
+        temp = dp[i - subset]
+        dp[subset] = dp[i - subset] 
+
+def sorthelper(a: list, n: int): 
+    if not a: return -1
+    if n == a[0]: return n
+    mid = int(len(a)/2)
+    print(f'-----------\nmid: {mid}')
+    end = len(a)
+    left = a[0: mid]
+    right = a[mid: end]
+    print(f'left:{left}, right: {right}')
+    return sorthelper(left, n) if n < a[mid] else sorthelper(right, n)
+
+
+def climbstairs(n: int) -> int:
+    if n ==1: return 1
+    dp = [-1 for i in range(n)]
+    dp[0] = 1
+    dp[1] = 2
+    for i in range(2, n):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[-1]
+
+
 
 def coin_change(coins: list, amount: int) -> int:
+    #  we creat a maxtemp because our subproblem of zero is already solved therefore we 
+    # are at a base of 1 
     maxtemp = amount + 1
     table = [0] + [maxtemp] * amount
     for subprob in range(1, maxtemp):
