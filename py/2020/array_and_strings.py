@@ -5,14 +5,14 @@ def main():
     # nums = [1,0,1]
     # nums = [2,14,18,22,22]
     # nums = [4,1,2,1,2]
-    # nums2 = [1,2,3]
+    nums2 = [1,2,3]
     # nums= [4,1,2,1,2]
     # removeDuplicates(0, nums)
     # rotate(nums, 3)
     # print(f'{contains_duplicates(nums)}')
     # v = singleNumber(nums)
     # print(f'single:  {v}')
-    
+
     # TODO LIST COMPREHENTION - START
     # [print(i) for i in range(5) if i <3]
     # x = [i for i in range(5) if i <3]
@@ -29,7 +29,7 @@ def main():
     # BOTH CONDITIONS HAVE TO BE TRUE TO SUCCEED --- START
     # num_list = [y for y in range(100) if y % 2 == 0 if y % 5 == 0]
     # print(num_list)
-    # BOTH CONDITIONS HAVE TO BE TRUE TO SUCCEED --- END    
+    # BOTH CONDITIONS HAVE TO BE TRUE TO SUCCEED --- END
     # matrix = [[1, 2], [3,4], [5,6], [7,8]]
     # transpose = [[row[i] for row in matrix] for i in range(2)]
     # print (transpose)
@@ -37,7 +37,7 @@ def main():
 
     # flip(31)
     # intersect(nums, nums2)
-    # print(plus_one(nums2))
+    print(plus_one(nums2))
     # moveZeroes(nums)
     # nums = [3,2,4]
     # target = 6
@@ -50,13 +50,13 @@ def main():
     # isAnagram("aaccc","ccacaa")
     # print(isPalindrone("0P"))
     # print(myAtoi("4193 with words"))
-    
+
     # longestCommonPrefix(["flower","flow","flight"])
     # print(hammingDistance(1,2))
     # print(pascalTriangle(5))
     # print(validparenthesis("([])"))
     s = [1,2,3,4,2,6]
-    
+
     # print(s[1:])
     # print(s[:-1])
     # getmaxscore(s)
@@ -66,8 +66,8 @@ def main():
     # climbstairs(10)
     # print(magicindex_ctci([0,1,2,3,4,5,6,7,8],5))
     # cell(l,7)
-    l = [20,4,8,2, 2, 100, 0, 0]
-    print(minsum(4, l))
+    # l = [20,4,8,2, 2, 100, 0, 0]
+    # print(minsum(4, l))
 
     k = [[1,0,12],
          [1,0,0],
@@ -107,7 +107,7 @@ def checkhit(area: list, row: int, col: int, rowsize: int, colsize: int , val):
     # if row+1 >= rowsize or col+1>= colsize: return val
     if area[row][col] == 9:
         return val
-    if area[row+1][col] == 1: 
+    if area[row+1][col] == 1:
         area[row+1][col] = 0
         return checkhit(area, row+1, col,rowsize, colsize, val+1)
     if area[row][col+1] == 1:
@@ -142,19 +142,19 @@ def cell(cells: list, N: int):
         cells = temp
         print(cells)
     return cells
-    
+
 
 def magicindex_ctci(a:list, n:int) -> int:
     if not a or n > a[-1] or n <a[0] : return 0
     return sorthelper(a, n)
 
-def find_subset(a: list): 
+def find_subset(a: list):
     dp = [[i] for i in a]
     for subset in range(len(a), "inf"):
         temp = dp[i - subset]
-        dp[subset] = dp[i - subset] 
+        dp[subset] = dp[i - subset]
 
-def sorthelper(a: list, n: int): 
+def sorthelper(a: list, n: int):
     if not a: return -1
     if n == a[0]: return n
     mid = int(len(a)/2)
@@ -178,8 +178,8 @@ def climbstairs(n: int) -> int:
 
 
 def coin_change(coins: list, amount: int) -> int:
-    #  we creat a maxtemp because our subproblem of zero is already solved therefore we 
-    # are at a base of 1 
+    #  we creat a maxtemp because our subproblem of zero is already solved therefore we
+    # are at a base of 1
     maxtemp = amount + 1
     table = [0] + [maxtemp] * amount
     for subprob in range(1, maxtemp):
@@ -231,11 +231,11 @@ def getmaxscore(integerArray: list):
     return score
 
 def maxproduct(nums: list):
-    print(len(nums)) 
+    print(len(nums))
     if len(nums) < 3: return 0
     nums.sort()
     nums.reverse()
-    val = 0 
+    val = 0
     i = 1
     j = 0
     for k in range(2, len(nums)):
@@ -252,8 +252,8 @@ def mergelistAtIndex(nums1: list, m: int, nums2: list, n: int):
     nums1[m:] = nums2[:n]
     # nums1[:] = nums1[:m] + nums2[:n]
     nums1.sort()
-        
-    
+
+
 def sorting(n: int):
         low = 1
         high = n
@@ -315,11 +315,11 @@ def longestCommonPrefix(strs: list) -> str:
         for other in strs:
             if other[i] != ch:
                 return shortest[:i]
-    return shortest 
+    return shortest
 
 def strStr(haystack: str, needle: str) -> int:
     return haystack.find(needle)
-        
+
 
 def myAtoi(string: str) -> int:
     l = []
@@ -339,7 +339,7 @@ def myAtoi(string: str) -> int:
     s = [i for i in string if i.isdigit()]
     if phen:
         s.insert(0, '-')
-    s = ''.join(map(str, s))   
+    s = ''.join(map(str, s))
     x = int(s)
     return x if -(2**31)-1 < x < 2**31 else -(2**31)
 
@@ -349,7 +349,7 @@ def isPalindrone(s:str)-> bool:
     s2 = s1[:]
     s1.reverse()
     return s1 == s2
-    
+
 
 
 def isAnagram(s: str, t: str) -> bool:
@@ -385,7 +385,7 @@ def reverseint(x: int) -> int:
         x = x[::-1]
     x = int(x)
     return x if -(2**31)-1 < x < 2**31 else 0
-    
+
 
 def revstring(s: list):
     s.reverse()
@@ -444,7 +444,7 @@ def intersect(nums1: list, nums2: list) -> list:
             # removes from temp so we wont have doubles
             temp.remove(x)
             # adds to returning list
-            allresults.append(x)    
+            allresults.append(x)
     print(allresults)
     return allresults
 
@@ -474,7 +474,7 @@ def removeDuplicates(self, nums: list) -> int:
         if nums[j] != nums[i]:
             i +=1
             nums[i] = nums[j]
-    
+
     print(i+1)
     return i + 1
 
@@ -502,7 +502,7 @@ def contains_duplicates(nums: list) -> bool:
         j+=1
 
     return False
-            
+
 
 
 def movelast(num: list, k: int):
@@ -510,7 +510,7 @@ def movelast(num: list, k: int):
     print(last)
     return last
 
-        
+
 
 
 
